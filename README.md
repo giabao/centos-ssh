@@ -7,6 +7,7 @@ Simple CentOS docker image with SSH access
 Usage
 -----
 Install docker (if you use centos 6):
+
 	yum install http://mirrors.123host.vn/epel/6/i386/epel-release-6-8.noarch.rpm
 	yum install docker-io git
 	
