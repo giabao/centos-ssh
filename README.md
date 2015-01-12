@@ -6,28 +6,25 @@ Simple CentOS docker image with SSH access
 
 Usage
 -----
-
-To create the image `tutum/centos` with one tag per CentOS release, execute the following commands on the tutum-ubuntu repository folder:
-
-	git checkout master
-	docker build -t tutum/centos:latest .
-
-	git checkout centos5
-	docker build -t tutum/centos:centos5 .
-
+Install docker (if you use centos 6):
+	yum install http://mirrors.123host.vn/epel/6/i386/epel-release-6-8.noarch.rpm
+	yum install docker-io git
+	
+	service docker start
+	
+	mkdir /root/giabao && cd /root/giabao
+	git clone https://github.com/giabao/centos-ssh.git
+	cd centos-ssh
 	git checkout centos6
-	docker build -t tutum/centos:centos6 .
-
-	git checkout centos7
-	docker build -t tutum/centos:centos7 .
+	docker build -t giabao/centos:centos6 .
 
 
-Running tutum/centos
+Running giabao/centos
 --------------------
 
 Run a container from the image you created earlier binding it to port 2222 in all interfaces:
 
-	sudo docker run -d -p 0.0.0.0:2222:22 tutum/centos
+	sudo docker run -d -p 0.0.0.0:2222:22 giabao/centos:centos6
 
 The first time that you run your container, a random password will be generated
 for user `root`. To get the password, check the logs of the container by running:
@@ -56,5 +53,5 @@ Setting a specific password for the root account
 If you want to use a preset password instead of a random generated one, you can
 set the environment variable `ROOT_PASS` to your specific password when running the container:
 
-	docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="mypass" tutum/centos
+	docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="mypass" giabao/centos
 
